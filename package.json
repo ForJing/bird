@@ -1,0 +1,19 @@
+{
+  "name": "breakout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "devDependencies": {
+    "sass": "^1.23.7",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.11"
+  }
+}
