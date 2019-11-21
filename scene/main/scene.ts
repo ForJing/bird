@@ -61,6 +61,12 @@ class Scene extends GuaScene {
       b.flipX = false;
       b.move(5);
     });
+
+    g.registerAction("j", () => {
+      b.vy = -10;
+      console.log(b.vy);
+      b.rotation = -(45 * Math.PI) / 180;
+    });
   }
 
   // draw() {}
