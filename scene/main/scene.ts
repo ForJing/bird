@@ -5,15 +5,14 @@ import Player from "./Player";
 import Enemy from "./Enemy";
 import GuaParticalSystem from "./GuaParticalSystem";
 import SceneEnd from "../end/scene_end";
+import GuaAnimation from "../../gua_game/GuaAnimation";
 
 class Scene extends GuaScene {
   bg: GuaImage;
   game: GuaGame;
-  player: Player;
-  elements: Array<any>;
-  cloud: GuaImage;
-  numberOfEnemies: number;
-  enemies: Array<Enemy> = [];
+  bird: any;
+  grounds: any[];
+  skipCount: number;
   constructor(game: GuaGame) {
     super(game);
     this.setup();
@@ -22,16 +21,28 @@ class Scene extends GuaScene {
 
   setup() {
     const game = this.game;
-    this.bg = new GuaImage(game, "sky");
-    this.numberOfEnemies = 10;
-    this.player = new Player(game);
-    this.cloud = new GuaImage(game, "cloud", 150, 150);
-    this.player.x = 100;
-    this.player.y = 450;
+    this.skipCount = 5;
+
+    this.bg = new GuaImage(game, "bg", 400, 600);
     this.addElement(this.bg);
-    this.addElement(this.cloud);
-    this.addEnemies();
-    this.addElement(this.player);
+
+    // 循环地面
+    this.grounds = [];
+
+    const g = new GuaImage(game, "ground");
+    const g2 = new GuaImage(game, "ground");
+    g.y = 500;
+    g2.y = 500;
+    g2.x = 360;
+    this.grounds.push(g);
+    this.grounds.push(g2);
+    this.addElement(g);
+    this.addElement(g2);
+
+    this.bird = new GuaAnimation(game, "bird");
+    this.bird.x = 100;
+    this.bird.y = 400;
+    this.addElement(this.bird);
 
     // const ps = new GuaParticalSystem(game);
     // this.addElement(ps);
@@ -39,49 +50,38 @@ class Scene extends GuaScene {
 
   setupInputs() {
     const g = this.game;
-    const p = this.player;
+    const b = this.bird;
 
     g.registerAction("a", () => {
-      p.moveLeft();
+      b.flipX = true;
+      b.move(-5);
     });
 
     g.registerAction("d", () => {
-      p.moveRight();
+      b.flipX = false;
+      b.move(5);
     });
-
-    g.registerAction("w", () => {
-      p.moveUp();
-    });
-
-    g.registerAction("s", () => {
-      p.moveDown();
-    });
-
-    g.registerAction("j", () => {
-      p.fire();
-    });
-  }
-
-  addEnemies() {
-    const es = [];
-    for (let i = 0; i < this.numberOfEnemies; i++) {
-      const enemy = new Enemy(this.game);
-      es.push(enemy);
-      this.addElement(enemy);
-    }
-    this.enemies = es;
   }
 
   // draw() {}
 
   update() {
-    this.cloud.y += 2;
     super.update();
-    this.enemies = this.enemies.filter(i => i.alive);
+    this.skipCount--;
+    let offset = -5;
+    if (this.skipCount === 0) {
+      offset = 20;
+      this.skipCount = 5;
+    }
+    for (let g of this.grounds) {
+      g.x += offset;
+    }
+    // for (let i = 0; i < this.grounds.length; i++) {
+
+    // }
   }
 
   fail() {
-    this.elements = [];
     this.game.scene = new SceneEnd(this.game);
   }
 }

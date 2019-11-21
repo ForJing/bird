@@ -8,8 +8,10 @@ const log = console.log.bind(this);
 
 async function __main() {
   const images = {
-    bird: require("./images/bird.png"),
-    city: require("./images/city.png"),
+    bird1: require("./images/bird1.png"),
+    bird2: require("./images/bird2.png"),
+    bird3: require("./images/bird3.png"),
+    bg: require("./images/bg.png"),
     ground: require("./images/ground.png"),
     pipe: require("./images/pipe.png"),
     tap: require("./images/tap.png")
