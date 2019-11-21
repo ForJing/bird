@@ -8,16 +8,11 @@ const log = console.log.bind(this);
 
 async function __main() {
   const images = {
-    sky: require("./images/sky.png"),
-    player: require("./images/player.png"),
-    cloud: require("./images/cloud.png"),
-    enemy0: require("./images/enemy0.png"),
-    enemy1: require("./images/enemy1.png"),
-    enemy2: require("./images/enemy2.png"),
-    enemy3: require("./images/enemy3.png"),
-    enemy4: require("./images/enemy4.png"),
-    bullet: require("./images/bullet.png"),
-    fire: require("./images/fire.png")
+    bird: require("./images/bird.png"),
+    city: require("./images/city.png"),
+    ground: require("./images/ground.png"),
+    pipe: require("./images/pipe.png"),
+    tap: require("./images/tap.png")
   };
 
   const imgs = await loadImages(images);
