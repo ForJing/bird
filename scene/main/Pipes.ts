@@ -46,8 +46,18 @@ class Pipes {
   draw() {
     const context = this.game.context;
     for (const p of this.pipes) {
-      // context.save();
-      context.drawImage(p.texture, p.x, p.y);
+      context.save();
+
+      const x = p.x + p.w / 2;
+      const y = p.y + p.h / 2;
+      context.translate(x, y);
+      if (p.flipY) {
+        context.scale(1, -1);
+      }
+
+      context.drawImage(p.texture, -p.w / 2, -p.h / 2);
+
+      context.restore();
     }
   }
 }

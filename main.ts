@@ -19,7 +19,7 @@ async function __main() {
 
   const imgs = await loadImages(images);
   const game = new GuaGame(30, imgs);
-  const scene = new Scene(game);
+  const scene = new SceneTitle(game);
   game.scene = scene;
 
   game.run();

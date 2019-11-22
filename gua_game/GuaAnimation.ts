@@ -1,4 +1,6 @@
 import GuaGame from "./GuaGame";
+import Scene from "../scene/main/scene";
+import SceneEnd from "../scene/end/scene_end";
 
 class GuaAnimation {
   game: GuaGame;
@@ -31,14 +33,8 @@ class GuaAnimation {
     }
 
     this.texture = this.frames[0];
-  }
-
-  getFrame() {
-    const frame = this.frames[this.frameIndex] as HTMLImageElement;
-    this.w = frame.width;
-    this.h = frame.height;
-    this.texture = frame;
-    return frame;
+    this.w = this.texture.width;
+    this.h = this.texture.height;
   }
 
   draw() {
@@ -61,7 +57,7 @@ class GuaAnimation {
 
       const x = this.x + this.w / 2;
       const y = this.y + this.h / 2;
-      context.translate(x, y); 
+      context.translate(x, y);
       context.rotate(this.rotation);
 
       context.drawImage(this.texture, -this.w / 2, -this.h / 2);
@@ -71,6 +67,7 @@ class GuaAnimation {
 
   move(v) {
     this.x += v;
+
     if (this.x + this.w >= 400) {
       this.x = 400 - this.w;
     }
@@ -85,8 +82,10 @@ class GuaAnimation {
       this.frameCount = 5;
       this.frameIndex++;
       this.frameIndex = this.frameIndex % 3;
-      this.getFrame();
+      this.texture = this.frames[this.frameIndex];
     }
+
+    const scene = this.game.scene as Scene;
 
     if (this.rotation < (90 * Math.PI) / 180) {
       this.rotation += 0.1;
@@ -94,10 +93,21 @@ class GuaAnimation {
     this.vy += this.gy * 0.5;
     this.y += this.vy;
     if (this.y >= 475) {
+      scene.fail();
       this.y = 475;
     }
     if (this.y < 0) {
       this.y = 0;
+    }
+
+    const pipes = scene.pipes.pipes;
+
+    for (const p of pipes) {
+      if (this.x + this.w > p.x && this.x < p.x + p.w) {
+        if (this.y + this.h > p.y && this.y + this.h < p.y + p.h) {
+          scene.fail();
+        }
+      }
     }
   }
 }
