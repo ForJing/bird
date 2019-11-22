@@ -22,14 +22,6 @@ async function __main() {
   const scene = new Scene(game);
   game.scene = scene;
 
-  // let score = 0;
-
-  // window.addEventListener("keydown", e => {
-  //   if (e.key === "p") {
-  //     game.pause();
-  //   }
-  // });
-
   game.run();
 }
 

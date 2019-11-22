@@ -6,7 +6,6 @@ class SceneEnd extends GuaScene {
   game: GuaGame;
 
   constructor(game: GuaGame) {
-    console.log("sen     end");
     super(game);
     game.registerAction("r", () => {
       game.scene = new SceneTitle(game);

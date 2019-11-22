@@ -9,6 +9,7 @@ class GuaImage {
   h: number;
   alive: boolean = true;
   game: GuaGame;
+  flipY?;
   constructor(game: GuaGame, name: string, w?, h?) {
     this.texture = game.textureByName(name);
     this.x = 0;

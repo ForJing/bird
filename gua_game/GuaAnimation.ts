@@ -61,7 +61,7 @@ class GuaAnimation {
 
       const x = this.x + this.w / 2;
       const y = this.y + this.h / 2;
-      context.translate(x, y);
+      context.translate(x, y); 
       context.rotate(this.rotation);
 
       context.drawImage(this.texture, -this.w / 2, -this.h / 2);
@@ -71,6 +71,12 @@ class GuaAnimation {
 
   move(v) {
     this.x += v;
+    if (this.x + this.w >= 400) {
+      this.x = 400 - this.w;
+    }
+    if (this.x <= 0) {
+      this.x = 0;
+    }
   }
 
   update() {
@@ -89,6 +95,9 @@ class GuaAnimation {
     this.y += this.vy;
     if (this.y >= 475) {
       this.y = 475;
+    }
+    if (this.y < 0) {
+      this.y = 0;
     }
   }
 }

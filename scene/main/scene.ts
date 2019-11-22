@@ -1,11 +1,9 @@
+import GuaAnimation from "../../gua_game/GuaAnimation";
 import GuaGame from "../../gua_game/GuaGame";
 import GuaImage from "../../gua_game/GuaImage";
 import GuaScene from "../../gua_game/GuaScene";
-import Player from "./Player";
-import Enemy from "./Enemy";
-import GuaParticalSystem from "./GuaParticalSystem";
 import SceneEnd from "../end/scene_end";
-import GuaAnimation from "../../gua_game/GuaAnimation";
+import Pipes from "./Pipes";
 
 class Scene extends GuaScene {
   bg: GuaImage;
@@ -13,6 +11,7 @@ class Scene extends GuaScene {
   bird: any;
   grounds: any[];
   skipCount: number;
+  pipes: Pipes;
   constructor(game: GuaGame) {
     super(game);
     this.setup();
@@ -25,6 +24,10 @@ class Scene extends GuaScene {
 
     this.bg = new GuaImage(game, "bg", 400, 600);
     this.addElement(this.bg);
+
+    // 加入水管
+    this.pipes = new Pipes(game);
+    this.addElement(this.pipes);
 
     // 循环地面
     this.grounds = [];
@@ -64,7 +67,6 @@ class Scene extends GuaScene {
 
     g.registerAction("j", () => {
       b.vy = -10;
-      console.log(b.vy);
       b.rotation = -(45 * Math.PI) / 180;
     });
   }
