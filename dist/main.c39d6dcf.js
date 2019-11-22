@@ -887,19 +887,19 @@ var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
 },{"_css_loader":"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"images/bird1.png":[function(require,module,exports) {
-module.exports = "bird1.bd21ec98.png";
+module.exports = "/bird1.bd21ec98.png";
 },{}],"images/bird2.png":[function(require,module,exports) {
-module.exports = "bird2.45bda399.png";
+module.exports = "/bird2.45bda399.png";
 },{}],"images/bird3.png":[function(require,module,exports) {
-module.exports = "bird3.d649151c.png";
+module.exports = "/bird3.d649151c.png";
 },{}],"images/bg.png":[function(require,module,exports) {
-module.exports = "bg.e79a717b.png";
+module.exports = "/bg.e79a717b.png";
 },{}],"images/ground.png":[function(require,module,exports) {
-module.exports = "ground.2376a7fe.png";
+module.exports = "/ground.2376a7fe.png";
 },{}],"images/pipe.png":[function(require,module,exports) {
-module.exports = "pipe.3907700d.png";
+module.exports = "/pipe.3907700d.png";
 },{}],"images/tap.png":[function(require,module,exports) {
-module.exports = "tap.bafd342d.png";
+module.exports = "/tap.bafd342d.png";
 },{}],"main.ts":[function(require,module,exports) {
 "use strict";
 
@@ -1126,7 +1126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53184" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1302,4 +1302,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.ts"], null)
-//# sourceMappingURL=main.c39d6dcf.js.map
+//# sourceMappingURL=/main.c39d6dcf.js.map
